@@ -1,0 +1,558 @@
+/* Současný vzhled projektu se liší od předchozích fází ze dvou hlavních důvodů. V první verzi jsem se s designem teprve učil, 
+takže jsem neuměl spravně uchopit a aplikovat minimalismus a zaoblení prvků. Druhá verze sice již minimalistická byla, ale jelikož vznikala pouze ve Figmě, nepočítal jsem s následnou optimalizací a návrh se pak ukázal jako špatně adaptovatelný pro flex design. */
+/* ===== GLOBÁLNÍ STYLING ===== */
+/* Import moderních písem z Google Fonts - Inter pro text, Poppins pro nadpisy */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:ital,wght@0,600;0,700;1,600&display=swap');
+
+/* Barevné schéma 60-30-10 a globální proměnné pro konzistenci v designu */
+:root {
+  --bg-main: #f8f9fa;       /* 60% - Světlé čisté pozadí */
+  --bg-card: #ffffff;       /* Pozadí pro boxy a karty */
+  --text-primary: #212529;  /* 30% - Temně šedá pro skvělou čitelnost */
+  --text-muted: #6c757d;    /* Doplňková šedá */
+  --accent-color: #7d2ae8;  /* 10% - Moderní zářivá fialová pro detaily */
+  --accent-hover: #5f1bb8;  /* Tmavší fialová pro hover efekty */
+  --border-color: #e9ecef;  /* Jemné linky */
+  --font-headings: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* Reset základního box modelu - odstraní výchozí margin a padding */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Základní body styling - font, barva a odsazení pro fixní navigaci */
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.6;
+  padding-top: 70px; /* Odsazení kvůli fixní navigaci */
+}
+
+/* ===== NAVIGAČNÍ BAR ===== */
+/* Fixní horní navigace se stínem - zůstává viditelná při scrollování */
+.top-bar {
+  background-color: var(--bg-card);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+/* Skupinování logo a názvu */
+.nav-logo-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Logo obrázek v navigaci */
+.top-bar img {
+  height: 36px;
+  width: 36px;
+  border-radius: 8px;
+}
+
+/* Název značky - fialový text na úvodní stránku */
+.brand-name {
+  font-family: var(--font-headings);
+  font-weight: 700;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+/* Hlavní navigační links - horizontální seznam */
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+/* Styling jednotlivých odkazů v menu */
+.nav-links a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Barva odkazu při najetí myší */
+.nav-links a:hover {
+  color: var(--accent-color);
+}
+
+/* ===== HLAVIČKA STRÁNKY ===== */
+/* Minimalistický banner s gradientem - vizuální oddělení od obsahu */
+header {
+  background: linear-gradient(135deg, #f1f3f5 0%, #e8dbfc 100%);
+  padding: 60px 20px;
+  text-align: center;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+  font-family: var(--font-headings);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+/* Hlavní obsahový kontejner */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px 60px 20px;
+}
+
+section {
+  background-color: var(--bg-card);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  margin-bottom: 30px;
+}
+
+section h2 {
+  font-family: var(--font-headings);
+  color: var(--accent-color);
+  font-size: 1.75rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--bg-main);
+  padding-bottom: 10px;
+}
+
+.childhood-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.childhood-content .text-block {
+  flex: 1 1 360px;
+  min-width: 260px;
+}
+
+.childhood-content .image-block {
+  flex: 0 0 240px;
+  text-align: center;
+}
+
+.childhood-content .image-block img {
+  width: 240px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Mřížka pro videa (Grid) */
+.content-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.video-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* Poměr stran 16:9 */
+}
+
+.video-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-card h3 {
+  padding: 15px;
+  font-size: 1rem;
+}
+
+.video-card h3 a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.video-card h3 a:hover {
+  color: var(--accent-color);
+}
+
+/* Sémantická tabulka statistik */
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.95rem;
+}
+
+.stats-table caption {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-muted);
+  text-align: left;
+}
+
+.stats-table th, .stats-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.stats-table thead th {
+  background-color: #f1f3f5;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.stats-table tfoot td {
+  font-weight: 600;
+  background-color: #f8f9fa;
+}
+
+/* Validovaný Formulář */
+.custom-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form-group input, .form-group select {
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  background-color: var(--bg-main);
+}
+
+.form-group input:focus, .form-group select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(125, 42, 232, 0.15);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.submit-btn {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Tlačítka pro externí odkazy */
+.link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.link-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(125, 42, 232, 0.08);
+}
+
+/* Patička webu */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Media Queries pro plnou responzivitu */
+@media (max-width: 768px) {
+  .nav-container {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .content-container {
+    grid-template-columns: 1fr;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+}
+
+.top-bar {
+  position: relative;
+}
+
+.top-bar .hamburger-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.top-bar .hamburger-icon {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .top-bar .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    right: 16px;
+    top: 100%;
+    left: 16px;
+    background: #ffffff;
+    padding: 18px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    gap: 12px;
+    z-index: 1000;
+  }
+
+  .top-bar .nav-links.active {
+    display: flex;
+  }
+
+  .top-bar .nav-links li {
+    width: 100%;
+  }
+
+  .top-bar .nav-links a {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .top-bar .nav-links a:hover {
+    background: rgba(125, 42, 232, 0.08);
+    color: var(--accent-color);
+  }
+
+  .top-bar .hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+/* UNIVERZÁLNÍ PATIČKA WEBU */
+.main-footer {
+    background-color: #222;
+    color: #bbb;
+    padding: 20px 0;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #00bcd4; /* Barva odkazu po najetí myší */
+}
+/* ========== HAMBURGER MENU ========== */
+/* Mobilní ikona menu - zarovnaná vpravo */
+.hamburger-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--accent-color);
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.hamburger-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.hamburger-btn:hover {
+  transform: scale(1.1);
+}
+
+.hamburger-btn:hover .hamburger-icon {
+  stroke: var(--accent-hover);
+}
+
+/* Mobilní menu - rozbalovací nabídka */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-links {
+    display: none !important;
+    flex-direction: column;
+    position: absolute;
+    right: 16px;
+    top: calc(100% + 8px);
+    left: 16px;
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    gap: 8px;
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex !important;
+  }
+
+  .nav-links a {
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    background: rgba(125, 42, 232, 0.1);
+    color: var(--accent-color);
+  }
+
+  .nav-container {
+    flex-wrap: wrap;
+  }
+}
+
+/* STYLY PRO SEKCI S VIDEEM */
+.content-section {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.content-section h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.video-container video {
+    width: 100%;
+    max-width: 640px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

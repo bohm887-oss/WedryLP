@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WedryLP - Kontaktní formulář</title>
+    <link rel="stylesheet" href="styleFormular.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <h1>WedryLP</h1>
+                <p>Vyplňte prosím podrobnosti v dotazníku.</p>
+            </div>
+
+            <form action="#" method="post" id="faultForm" target="submitFrame">
+                <div class="form-group">
+                    <label for="name">Celé jméno <span class="required">*</span></label>
+                    <input type="text" id="name" name="jmeno" placeholder="Jan Novák" required minlength="3">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="novak@skola.cz" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Heslo <span class="required">*</span></label>
+                    <input type="password" id="password" name="heslo" placeholder="Minimálně 8 znaků, 1 velké písmeno, 1 číslice" required>
+                    <label class="checkbox-show-password">
+                        <input type="checkbox" id="showPassword">
+                        <span>Zobrazit heslo</span>
+                    </label>
+                    <div class="password-requirements">
+                        <p class="requirement" id="req-length"><span class="check-icon">✓</span> Minimálně 8 znaků</p>
+                        <p class="requirement" id="req-uppercase"><span class="check-icon">✓</span> Alespoň jedno velké písmeno</p>
+                        <p class="requirement" id="req-number"><span class="check-icon">✓</span> Alespoň jednu číslici</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="room">Důvod návštěvy <span class="required">*</span></label>
+                    <select id="room" name="mistnost" required>
+                        <option value="" disabled selected>Vyberte důvod návštěvy...</option>
+                        <option value="U1">Fanoušek</option>
+                        <option value="U2">Jsem tu poprvé</option>
+                        <option value="L1">Získávám informace</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="group-label">Hodnocení <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="priorita" value="Nizka"> 1</label>
+                        <label><input type="radio" name="priorita" value="Stredni"> 2</label>
+                        <label><input type="radio" name="priorita" value="Vysoka"> 3</label>
+                        <label><input type="radio" name="priorita" value="Vysoka"> 4</label>
+                        <label><input type="radio" name="priorita" value="Vysoka"> 5</label>
+                        <label><input type="radio" name="priorita" value="Zatim_nic" checked> Zatím nic</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Dojem ze stránky</label>
+                    <textarea id="description" name="popis" rows="4" placeholder="Popište, jak se stránka líbila / nepovinné..."></textarea>
+                </div>
+
+                <div class="buttons-container">
+                    <button type="submit" class="submit-button">Odeslat</button>
+                    <button type="reset" class="reset-button">Vymazat</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <iframe name="submitFrame" style="display:none; width:0; height:0; border:0; visibility:hidden;"></iframe>
+    
+    <script src="scriptFormular.js"></script>
+</body>
+</html>
