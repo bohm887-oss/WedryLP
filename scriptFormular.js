@@ -149,7 +149,7 @@ form.addEventListener('submit', (e) => {
         form.reset();
         // Přesměrovat na úvodní stránku po 500ms (aby se zviditelnilo vymazání)
         setTimeout(() => {
-            window.location.href = '../uvod.html';
+            window.location.href = 'uvod.html';
         }, 500);
     }
 });
