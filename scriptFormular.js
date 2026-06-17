@@ -147,10 +147,10 @@ form.addEventListener('submit', (e) => {
         e.preventDefault();
         // Smazat obsah formuláře
         form.reset();
-        // Přesměrovat na úvodní stránku po 500ms (aby se zviditelnilo vymazání)
+        // Přesměrovat na úvodní stránku
         setTimeout(() => {
             window.location.href = 'uvod.html';
-        }, 500);
+        }, 0);
     }
 });
 
